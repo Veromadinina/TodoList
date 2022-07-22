@@ -1,38 +1,33 @@
-import { StyleSheet, Text, View,Button } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { ListItem } from "@rneui/themed";
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { ListItem,Icon,Button } from "@rneui/themed";
 
-const Swipe = () => {
+//({tache})= props déstructuré suppCallBack creer
+const Swipe = ({tache,id,suppCallBack}) => {
   return (
-    <View>
-        <ListItem.Swipeable
-        leftContent={(reset) => (
-        <Button
-      title="Info"
-      onPress={() => reset()}
-      icon={{ name: 'info', color: 'white' }}
-      buttonStyle={{ minHeight: '100%' }}
-    />
-  )}
-     rightContent={(reset) => (
-        <Button
+    
+    <ListItem.Swipeable
+  rightContent={() => (
+    <Button
       title="Delete"
-      onPress={() => reset()}
+      onPress={() => suppCallBack(id)} //on remplace supprimer par suppCallBack
       icon={{ name: 'delete', color: 'white' }}
       buttonStyle={{ minHeight: '100%', backgroundColor: 'red' }}
     />
   )}
 >
-     <Icon name="twitter" />
-    <ListItem.Content>
-     <ListItem.Title>Hello Swiper</ListItem.Title>
-    </ListItem.Content>
-     <ListItem.Chevron />
-    </ListItem.Swipeable>
-    </View>
-  )
-}
+  <Icon name="star-half" />
+  <ListItem.Content>
+    <ListItem.Title>{tache}</ListItem.Title>
+  </ListItem.Content>
+  <ListItem.Chevron />
+</ListItem.Swipeable>
+
+        )
+
+     }
+  
+
 
 export default Swipe
 
